@@ -1,0 +1,756 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: #374151;
+  background-color: #f9fafb;
+}
+
+.dark body {
+  color: #e5e7eb;
+  background-color: #0f172a;
+}
+
+/* Custom Animations */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Utility Classes */
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out;
+}
+
+.animate-fade-in-down {
+  animation: fade-in-down 0.8s ease-out;
+}
+
+.animate-fade-in-left {
+  animation: fade-in-left 0.8s ease-out;
+}
+
+.animate-fade-in-right {
+  animation: fade-in-right 0.8s ease-out;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.8s ease-out;
+}
+
+/* Delay Classes */
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+.delay-700 {
+  animation-delay: 700ms;
+}
+
+.delay-1000 {
+  animation-delay: 1000ms;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #3b82f6, #14b8a6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #2563eb, #0d9488);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #60a5fa, #34d399);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #93c5fd, #6ee7b7);
+}
+
+/* Backdrop Blur Support */
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Gradient Text */
+.bg-clip-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+/* Custom Focus Styles */
+input:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Smooth Transitions */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Selection Color */
+::selection {
+  background: rgba(59, 130, 246, 0.2);
+  color: #1e293b;
+}
+
+.dark ::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: #f8fafc;
+}
+
+/* Loading Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Slow spin animation for project effects */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* 3D Cube Animations for Projects */
+@keyframes cube-float {
+  0%, 100% {
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.12);
+  }
+  15% {
+    transform: translateY(-18px) rotateX(60deg) rotateY(30deg) rotateZ(10deg) scale(1.08);
+    box-shadow: 0 16px 40px 0 rgba(0,0,0,0.16);
+  }
+  35% {
+    transform: translateY(-28px) rotateX(120deg) rotateY(60deg) rotateZ(25deg) scale(1.12);
+    box-shadow: 0 24px 48px 0 rgba(0,0,0,0.18);
+  }
+  55% {
+    transform: translateY(-12px) rotateX(180deg) rotateY(90deg) rotateZ(40deg) scale(1.06);
+    box-shadow: 0 12px 36px 0 rgba(0,0,0,0.14);
+  }
+  75% {
+    transform: translateY(-32px) rotateX(270deg) rotateY(135deg) rotateZ(90deg) scale(1.15);
+    box-shadow: 0 28px 56px 0 rgba(0,0,0,0.20);
+  }
+}
+
+@keyframes small-cube-float {
+  0%, 100% {
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.6);
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.10);
+  }
+  20% {
+    transform: translateY(-10px) rotateX(80deg) rotateY(40deg) rotateZ(15deg) scale(0.7);
+    box-shadow: 0 8px 20px 0 rgba(0,0,0,0.13);
+  }
+  50% {
+    transform: translateY(-22px) rotateX(200deg) rotateY(100deg) rotateZ(50deg) scale(0.85);
+    box-shadow: 0 12px 28px 0 rgba(0,0,0,0.15);
+  }
+  80% {
+    transform: translateY(-16px) rotateX(300deg) rotateY(150deg) rotateZ(80deg) scale(0.65);
+    box-shadow: 0 10px 24px 0 rgba(0,0,0,0.12);
+  }
+}
+
+.cube-container {
+  transform-style: preserve-3d;
+  animation: cube-float 4s ease-in-out infinite;
+}
+
+.small-cube-container {
+  transform-style: preserve-3d;
+  animation: small-cube-float 3s ease-in-out infinite;
+}
+
+.cube, .small-cube {
+  position: relative;
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.12);
+  /* Soft reflection */
+}
+.cube::after, .small-cube::after {
+  content: '';
+  position: absolute;
+  left: 10%;
+  bottom: 0;
+  width: 80%;
+  height: 18%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.02) 100%);
+  opacity: 0.5;
+  filter: blur(2px);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.cube {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  transform-style: preserve-3d;
+}
+
+.small-cube {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  transform-style: preserve-3d;
+}
+
+.cube-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(2px);
+}
+
+/* Cube faces positioning for regular cube */
+.cube .cube-front {
+  transform: rotateY(0deg) translateZ(20px);
+}
+
+.cube .cube-back {
+  transform: rotateY(180deg) translateZ(20px);
+}
+
+.cube .cube-right {
+  transform: rotateY(90deg) translateZ(20px);
+}
+
+.cube .cube-left {
+  transform: rotateY(-90deg) translateZ(20px);
+}
+
+.cube .cube-top {
+  transform: rotateX(90deg) translateZ(20px);
+}
+
+.cube .cube-bottom {
+  transform: rotateX(-90deg) translateZ(20px);
+}
+
+/* Cube faces positioning for small cube */
+.small-cube .cube-front {
+  transform: rotateY(0deg) translateZ(12px);
+}
+
+.small-cube .cube-back {
+  transform: rotateY(180deg) translateZ(12px);
+}
+
+.small-cube .cube-right {
+  transform: rotateY(90deg) translateZ(12px);
+}
+
+.small-cube .cube-left {
+  transform: rotateY(-90deg) translateZ(12px);
+}
+
+.small-cube .cube-top {
+  transform: rotateX(90deg) translateZ(12px);
+}
+
+.small-cube .cube-bottom {
+  transform: rotateX(-90deg) translateZ(12px);
+}
+
+/* About Section 3D Effects */
+@keyframes sphere-float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+  33% {
+    transform: translateY(-15px) translateX(10px) scale(1.1);
+  }
+  66% {
+    transform: translateY(-5px) translateX(-8px) scale(0.9);
+  }
+}
+
+@keyframes particle-drift {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) translateX(15px) rotate(180deg);
+  }
+}
+
+@keyframes wave-animation {
+  0%, 100% {
+    transform: translateX(-100%) skewX(12deg);
+  }
+  50% {
+    transform: translateX(100%) skewX(-12deg);
+  }
+}
+
+.sphere-container {
+  animation: sphere-float 3s ease-in-out infinite;
+}
+
+.sphere {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1), inset 5px 5px 10px rgba(255,255,255,0.1);
+}
+
+.particle {
+  animation: particle-drift 4s ease-in-out infinite;
+}
+
+.wave-animation {
+  animation: wave-animation 3s ease-in-out infinite;
+}
+
+/* Skills Section 3D Effects */
+@keyframes geometric-rotate {
+  0%, 100% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
+  }
+  25% {
+    transform: rotateX(90deg) rotateY(45deg) rotateZ(30deg) scale(1.2);
+  }
+  50% {
+    transform: rotateX(180deg) rotateY(90deg) rotateZ(60deg) scale(0.8);
+  }
+  75% {
+    transform: rotateX(270deg) rotateY(135deg) rotateZ(90deg) scale(1.1);
+  }
+}
+
+@keyframes code-symbol-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-25px) rotate(180deg) scale(1.3);
+  }
+}
+
+@keyframes pulse-circle {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.25;
+  }
+  50% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 0.1;
+  }
+}
+
+@keyframes matrix-bg {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+}
+
+.geometric-shape {
+  animation: geometric-rotate 4s ease-in-out infinite;
+}
+
+.diamond {
+  width: 16px;
+  height: 16px;
+  transform: rotate(45deg);
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.code-symbol {
+  animation: code-symbol-float 3s ease-in-out infinite;
+}
+
+.pulse-circle {
+  animation: pulse-circle 2s ease-in-out infinite;
+}
+
+.matrix-bg {
+  animation: matrix-bg 5s ease-in-out infinite;
+  background-size: 200% 200%;
+}
+
+/* Education Section 3D Effects */
+@keyframes academic-symbol-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translateY(-20px) rotate(120deg) scale(1.2);
+  }
+  66% {
+    transform: translateY(-10px) rotate(240deg) scale(0.9);
+  }
+}
+
+@keyframes hexagon-rotate {
+  0%, 100% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  50% {
+    transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg);
+  }
+}
+
+@keyframes knowledge-particle-drift {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+  25% {
+    transform: translateY(-15px) translateX(10px) scale(1.5);
+  }
+  50% {
+    transform: translateY(-30px) translateX(-5px) scale(0.5);
+  }
+  75% {
+    transform: translateY(-20px) translateX(15px) scale(1.2);
+  }
+}
+
+@keyframes education-wave {
+  0%, 100% {
+    transform: translateX(-100%) skewY(2deg);
+  }
+  50% {
+    transform: translateX(100%) skewY(-2deg);
+  }
+}
+
+.academic-symbol {
+  animation: academic-symbol-float 4s ease-in-out infinite;
+}
+
+.hexagon-container {
+  animation: hexagon-rotate 5s ease-in-out infinite;
+}
+
+.hexagon {
+  width: 24px;
+  height: 24px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.knowledge-particle {
+  animation: knowledge-particle-drift 3s ease-in-out infinite;
+}
+
+.education-wave {
+  animation: education-wave 4s ease-in-out infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0.2;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    /* Use CSS variable for fall distance, fallback to 110vh */
+    transform: translateY(var(--fall-distance, 110vh));
+    opacity: 0.1;
+  }
+}
+.animate-fall {
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Ripple Effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+@keyframes meme-laugh {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  20% {
+    transform: scale(1.1, 0.9) rotate(-8deg);
+  }
+  50% {
+    transform: scale(1.15, 0.85) rotate(8deg);
+  }
+  80% {
+    transform: scale(1.1, 0.9) rotate(-8deg);
+  }
+}
+.animate-meme-laugh {
+  animation: meme-laugh 2.5s ease-in-out infinite;
+}
+@keyframes meme-wave {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(18px);
+  }
+}
+.meme-wave {
+  animation: meme-wave 3.5s ease-in-out infinite;
+}
+
+@keyframes meme-emoji-float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(24px) scale(1.08);
+  }
+}
+.meme-emoji-float {
+  animation: meme-emoji-float 6s ease-in-out infinite;
+}
+
+@keyframes contact-icon-float {
+  0%, 100% {
+    transform: translateY(0px) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translateY(18px) scale(1.08) rotate(8deg);
+  }
+}
+.contact-icon-float {
+  animation: contact-icon-float 7s ease-in-out infinite;
+}
+
+@keyframes morphing-blob {
+  0%, 100% {
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    transform: scale(1) rotate(0deg);
+  }
+  20% {
+    border-radius: 60% 40% 55% 45% / 45% 55% 60% 40%;
+    transform: scale(1.05) rotate(8deg);
+  }
+  40% {
+    border-radius: 50% 60% 40% 60% / 60% 40% 60% 40%;
+    transform: scale(0.98) rotate(-6deg);
+  }
+  60% {
+    border-radius: 55% 45% 60% 40% / 40% 60% 45% 55%;
+    transform: scale(1.03) rotate(4deg);
+  }
+  80% {
+    border-radius: 45% 55% 50% 60% / 60% 50% 40% 60%;
+    transform: scale(1.01) rotate(-4deg);
+  }
+}
+.animate-morphing-blob {
+  animation: morphing-blob 8s ease-in-out infinite;
+}
+
+@keyframes morphing-blob2 {
+  0%, 100% {
+    border-radius: 60% 40% 55% 45% / 45% 55% 60% 40%;
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    border-radius: 50% 60% 40% 60% / 60% 40% 60% 40%;
+    transform: scale(1.08) rotate(-10deg);
+  }
+  50% {
+    border-radius: 55% 45% 60% 40% / 40% 60% 45% 55%;
+    transform: scale(0.95) rotate(6deg);
+  }
+  75% {
+    border-radius: 45% 55% 50% 60% / 60% 50% 40% 60%;
+    transform: scale(1.03) rotate(-4deg);
+  }
+}
+.animate-morphing-blob2 {
+  animation: morphing-blob2 10s ease-in-out infinite;
+}
+
+@keyframes form-particle-float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translateY(-30px) scale(1.2);
+    opacity: 0.18;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.1;
+  }
+}
+.animate-form-particle {
+  animation: form-particle-float 6s ease-in-out infinite;
+}
+
+/* Developer Meme Section Animations */
+@keyframes falling-meme {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes floating-laugh {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.4;
+  }
+  25% {
+    transform: translateY(-20px) rotate(5deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-10px) rotate(-3deg);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translateY(-15px) rotate(2deg);
+    opacity: 0.7;
+  }
+}
+
+.falling-meme {
+  animation: falling-meme linear infinite;
+}
+
+.floating-laugh {
+  animation: floating-laugh ease-in-out infinite;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Github, Sparkles } from 'lucide-react';
+import { Github, Sparkles } from 'lucide-react';
 
 const Projects: React.FC = () => {
   const projects = [
@@ -8,8 +8,7 @@ const Projects: React.FC = () => {
       title: 'Email Sender Web App',
       description: 'A streamlined web application for sending emails with SMTP integration, built with Streamlit for easy deployment.',
       tags: ['Streamlit', 'SMTP', 'Python', 'Email API'],
-      liveDemo: '#',
-      sourceCode: '#',
+      sourceCode: 'https://github.com/arvindsingh06/send_mail',
       featured: true,
       cubeColor: 'from-blue-500 to-cyan-500'
     },
@@ -18,8 +17,7 @@ const Projects: React.FC = () => {
       title: 'Salary Prediction ML Model',
       description: 'Machine learning model using Linear Regression to predict salaries based on experience and other factors.',
       tags: ['Linear Regression', 'scikit-learn', 'Python', 'ML'],
-      liveDemo: '#',
-      sourceCode: '#',
+      sourceCode: 'https://github.com/arvindsingh06',
       featured: true,
       cubeColor: 'from-green-500 to-emerald-500'
     },
@@ -28,20 +26,36 @@ const Projects: React.FC = () => {
       title: 'AI Chatbot',
       description: 'Interactive AI chatbot built with Gradio interface and OpenAI integration for natural conversations.',
       tags: ['Gradio', 'OpenAI', 'Python', 'AI'],
-      liveDemo: '#',
-      sourceCode: '#',
+      sourceCode: 'https://github.com/arvindsingh06',
       featured: true,
       cubeColor: 'from-purple-500 to-pink-500'
     },
     {
-      emoji: '🛠️',
-      title: 'Multi-tool Dashboard',
-      description: 'Comprehensive dashboard with multiple automation tools built using Streamlit for various utility functions.',
-      tags: ['Streamlit', 'Automation', 'Python', 'Dashboard'],
-      liveDemo: '#',
-      sourceCode: '#',
+      emoji: '📞',
+      title: 'Phone Call Automation',
+      description: 'Automated phone calling system built with Python for making programmatic voice calls and handling responses.',
+      tags: ['Python', 'Voice API', 'Automation', 'Telephony'],
+      sourceCode: 'https://github.com/arvindsingh06',
       featured: true,
       cubeColor: 'from-orange-500 to-red-500'
+    },
+    {
+      emoji: '💬',
+      title: 'WhatsApp Messenger Bot',
+      description: 'WhatsApp messaging automation using Twilio API for sending bulk messages and automated responses.',
+      tags: ['Twilio', 'WhatsApp API', 'Python', 'Messaging'],
+      sourceCode: 'https://github.com/arvindsingh06',
+      featured: true,
+      cubeColor: 'from-green-400 to-teal-500'
+    },
+    {
+      emoji: '📱',
+      title: 'SMS Sender with Twilio',
+      description: 'SMS automation system using Twilio API for sending bulk SMS messages and notifications programmatically.',
+      tags: ['Twilio', 'SMS API', 'Python', 'Notifications'],
+      sourceCode: 'https://github.com/arvindsingh06',
+      featured: true,
+      cubeColor: 'from-indigo-500 to-purple-500'
     }
   ];
 
@@ -105,7 +119,7 @@ const Projects: React.FC = () => {
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto mb-8"></div>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Explore some of my latest work in AI, machine learning, and data analytics.
+              Explore some of my latest work in AI, machine learning, automation, and communication systems.
             </p>
           </div>
 
@@ -206,21 +220,16 @@ const Projects: React.FC = () => {
                     ))}
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex space-x-4">
-                    <a
-                      href={project.liveDemo}
-                      className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-lg font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-300 hover:from-blue-700 hover:to-teal-700"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      <span>Live Demo</span>
-                    </a>
+                  {/* Action Button */}
+                  <div className="flex justify-center">
                     <a
                       href={project.sourceCode}
-                      className="flex items-center space-x-2 px-4 py-2 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-slate-600 transition-all duration-300 transform hover:scale-105"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 text-white rounded-lg font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-300 hover:from-gray-900 hover:to-black dark:hover:from-gray-600 dark:hover:to-gray-700"
                     >
-                      <Github className="w-4 h-4" />
-                      <span>Code</span>
+                      <Github className="w-5 h-5" />
+                      <span>View Code</span>
                     </a>
                   </div>
                 </div>

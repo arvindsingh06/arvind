@@ -33,11 +33,9 @@ const Chatbot: React.FC = () => {
       text: "Here are Arvind's featured projects:",
       links: [
         { text: "Email Sender Web App", url: "https://github.com/arvindsingh06/send_mail", icon: <Github className="w-4 h-4" /> },
-        { text: "Salary Prediction ML Model", url: "https://github.com/arvindsingh06", icon: <Github className="w-4 h-4" /> },
-        { text: "AI Chatbot", url: "https://github.com/arvindsingh06", icon: <Github className="w-4 h-4" /> },
-        { text: "Phone Call Automation", url: "https://github.com/arvindsingh06", icon: <Github className="w-4 h-4" /> },
-        { text: "WhatsApp Messenger Bot", url: "https://github.com/arvindsingh06", icon: <Github className="w-4 h-4" /> },
-        { text: "SMS Sender with Twilio", url: "https://github.com/arvindsingh06", icon: <Github className="w-4 h-4" /> }
+        { text: "Phone Call Automation", url: "https://github.com/arvindsingh06/make_call", icon: <Github className="w-4 h-4" /> },
+        { text: "WhatsApp Messenger Bot", url: "https://github.com/arvindsingh06/sendwhatsappmsg", icon: <Github className="w-4 h-4" /> },
+        { text: "SMS Sender with Twilio", url: "https://github.com/arvindsingh06/send_sms", icon: <Github className="w-4 h-4" /> }
       ]
     },
     skills: {
@@ -91,7 +89,91 @@ const Chatbot: React.FC = () => {
   const generateResponse = (input: string): { text: string; links?: Array<{ text: string; url: string; icon?: React.ReactNode }> } => {
     const lowerInput = input.toLowerCase();
     
-    if (lowerInput.includes('project') || lowerInput.includes('work') || lowerInput.includes('github')) {
+    // Direct contact requests
+    if (lowerInput.includes('phone number') || lowerInput.includes('mobile number') || lowerInput.includes('contact number') || lowerInput.includes('call')) {
+      return {
+        text: "📞 Arvind's phone number is: +91 70733 17709",
+        links: [
+          { text: "Call Now", url: "tel:+917073317709", icon: <Phone className="w-4 h-4" /> },
+          { text: "WhatsApp", url: "https://wa.me/917073317709", icon: <Phone className="w-4 h-4" /> }
+        ]
+      };
+    } else if (lowerInput.includes('email') && (lowerInput.includes('what') || lowerInput.includes('give') || lowerInput.includes('tell'))) {
+      return {
+        text: "📧 Arvind's email address is: arvindsinghrathore113@gmail.com",
+        links: [
+          { text: "Send Email", url: "mailto:arvindsinghrathore113@gmail.com", icon: <Mail className="w-4 h-4" /> }
+        ]
+      };
+    } else if (lowerInput.includes('linkedin') && (lowerInput.includes('profile') || lowerInput.includes('link'))) {
+      return {
+        text: "🔗 Arvind's LinkedIn profile:",
+        links: [
+          { text: "LinkedIn Profile", url: "https://linkedin.com/in/arvind-singh-rathore-039789344", icon: <Linkedin className="w-4 h-4" /> }
+        ]
+      };
+    } else if (lowerInput.includes('github') && (lowerInput.includes('profile') || lowerInput.includes('link'))) {
+      return {
+        text: "💻 Arvind's GitHub profile:",
+        links: [
+          { text: "GitHub Profile", url: "https://github.com/arvindsingh06", icon: <Github className="w-4 h-4" /> }
+        ]
+      };
+    } else if (lowerInput.includes('instagram') && (lowerInput.includes('profile') || lowerInput.includes('link'))) {
+      return {
+        text: "📸 Arvind's Instagram profile:",
+        links: [
+          { text: "Instagram Profile", url: "https://instagram.com/arvind_singh_chawandiya", icon: <Instagram className="w-4 h-4" /> }
+        ]
+      };
+    } else if (lowerInput.includes('whatsapp') && (lowerInput.includes('number') || lowerInput.includes('link'))) {
+      return {
+        text: "💬 Contact Arvind on WhatsApp: +91 70733 17709",
+        links: [
+          { text: "Open WhatsApp", url: "https://wa.me/917073317709", icon: <Phone className="w-4 h-4" /> }
+        ]
+      };
+    } else if (lowerInput.includes('resume') || lowerInput.includes('cv')) {
+      return {
+        text: "📄 You can download Arvind's resume from the hero section or contact him directly for the latest version.",
+        links: [
+          { text: "Go to Home", url: "#home" },
+          { text: "Contact for Resume", url: "mailto:arvindsinghrathore113@gmail.com", icon: <Mail className="w-4 h-4" /> }
+        ]
+      };
+    }
+    // Specific project links
+    else if (lowerInput.includes('email sender') || lowerInput.includes('send mail')) {
+      return {
+        text: "📧 Email Sender Web App - A streamlined application for sending emails with SMTP integration:",
+        links: [
+          { text: "View Email Sender Project", url: "https://github.com/arvindsingh06/send_mail", icon: <Github className="w-4 h-4" /> }
+        ]
+      };
+    } else if (lowerInput.includes('phone call') || lowerInput.includes('call automation') || lowerInput.includes('make call')) {
+      return {
+        text: "📞 Phone Call Automation - Automated calling system built with Python:",
+        links: [
+          { text: "View Call Automation Project", url: "https://github.com/arvindsingh06/make_call", icon: <Github className="w-4 h-4" /> }
+        ]
+      };
+    } else if (lowerInput.includes('whatsapp') && (lowerInput.includes('bot') || lowerInput.includes('message') || lowerInput.includes('automation'))) {
+      return {
+        text: "💬 WhatsApp Messenger Bot - Automated messaging using Twilio API:",
+        links: [
+          { text: "View WhatsApp Bot Project", url: "https://github.com/arvindsingh06/sendwhatsappmsg", icon: <Github className="w-4 h-4" /> }
+        ]
+      };
+    } else if (lowerInput.includes('sms') || lowerInput.includes('text message') || lowerInput.includes('send sms')) {
+      return {
+        text: "📱 SMS Sender with Twilio - Bulk SMS automation system:",
+        links: [
+          { text: "View SMS Sender Project", url: "https://github.com/arvindsingh06/send_sms", icon: <Github className="w-4 h-4" /> }
+        ]
+      };
+    }
+    // General categories
+    else if (lowerInput.includes('project') || lowerInput.includes('work') || lowerInput.includes('github')) {
       return portfolioData.projects;
     } else if (lowerInput.includes('skill') || lowerInput.includes('technology') || lowerInput.includes('programming')) {
       return portfolioData.skills;

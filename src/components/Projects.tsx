@@ -35,7 +35,7 @@ const Projects: React.FC = () => {
       title: 'Phone Call Automation',
       description: 'Automated phone calling system built with Python for making programmatic voice calls and handling responses.',
       tags: ['Python', 'Voice API', 'Automation', 'Telephony'],
-      sourceCode: 'https://github.com/arvindsingh06',
+      sourceCode: 'https://github.com/arvindsingh06/make_call',
       featured: true,
       cubeColor: 'from-orange-500 to-red-500'
     },
@@ -44,7 +44,7 @@ const Projects: React.FC = () => {
       title: 'WhatsApp Messenger Bot',
       description: 'WhatsApp messaging automation using Twilio API for sending bulk messages and automated responses.',
       tags: ['Twilio', 'WhatsApp API', 'Python', 'Messaging'],
-      sourceCode: 'https://github.com/arvindsingh06',
+      sourceCode: 'https://github.com/arvindsingh06/sendwhatsappmsg',
       featured: true,
       cubeColor: 'from-green-400 to-teal-500'
     },
@@ -53,7 +53,7 @@ const Projects: React.FC = () => {
       title: 'SMS Sender with Twilio',
       description: 'SMS automation system using Twilio API for sending bulk SMS messages and notifications programmatically.',
       tags: ['Twilio', 'SMS API', 'Python', 'Notifications'],
-      sourceCode: 'https://github.com/arvindsingh06',
+      sourceCode: 'https://github.com/arvindsingh06/send_sms',
       featured: true,
       cubeColor: 'from-indigo-500 to-purple-500'
     }

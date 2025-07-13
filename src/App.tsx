@@ -11,6 +11,7 @@ import Internship from './components/Internship';
 import Memes from './components/Memes';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Chatbot from './components/Chatbot';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,6 +38,7 @@ function App() {
             <Contact />
           </main>
           <Footer />
+          <Chatbot />
         </div>
       )}
     </ThemeProvider>

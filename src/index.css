@@ -782,3 +782,155 @@ button:focus {
 .animate-chatbot-glow {
   animation: chatbot-glow 2s ease-in-out infinite;
 }
+
+/* Galaxy Background Animations */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+  }
+}
+
+@keyframes shooting-star {
+  0% {
+    transform: translateX(-100px) translateY(-100px) rotate(45deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw) translateY(100vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes galaxy-rotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 0.3;
+  }
+}
+
+.animate-twinkle {
+  animation: twinkle linear infinite;
+}
+
+.animate-shooting-star {
+  animation: shooting-star linear infinite;
+}
+
+.animate-galaxy-rotate {
+  animation: galaxy-rotate ease-in-out infinite;
+}
+
+.star-3d {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.star-3d::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  transform: translate(-50%, -50%);
+  animation: star-flare 2s ease-in-out infinite alternate;
+}
+
+.star-3d::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(0deg, transparent, rgba(255,255,255,0.8), transparent);
+  transform: translate(-50%, -50%);
+  animation: star-flare 2s ease-in-out infinite alternate;
+}
+
+@keyframes star-flare {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+.shooting-star-trail {
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 6px 2px rgba(255,255,255,0.8);
+}
+
+.shooting-star-trail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  background: linear-gradient(45deg, rgba(255,255,255,0.8), transparent);
+  border-radius: 50%;
+  box-shadow: 
+    -20px -20px 10px rgba(255,255,255,0.3),
+    -40px -40px 20px rgba(255,255,255,0.2),
+    -60px -60px 30px rgba(255,255,255,0.1);
+}
+
+.galaxy-spiral {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.galaxy-spiral::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  animation: spiral-rotate 8s linear infinite;
+}
+
+@keyframes spiral-rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Radial gradient utility */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}

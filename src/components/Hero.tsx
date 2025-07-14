@@ -27,112 +27,142 @@ const Hero: React.FC = () => {
     }
   };
 
-  // Generate stars for galaxy effect
-  const generateStars = (count: number) => {
+  // Generate smooth moving and blinking stars
+  const generateMovingStars = (count: number) => {
     return Array.from({ length: count }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 3 + 1,
-      opacity: Math.random() * 0.8 + 0.2,
-      animationDelay: Math.random() * 4,
-      animationDuration: Math.random() * 3 + 2,
-      twinkleDelay: Math.random() * 2,
+      size: Math.random() * 4 + 1,
+      opacity: Math.random() * 0.8 + 0.3,
+      moveX: (Math.random() - 0.5) * 100, // Random horizontal movement
+      moveY: (Math.random() - 0.5) * 100, // Random vertical movement
+      animationDelay: Math.random() * 5,
+      animationDuration: Math.random() * 4 + 3,
+      blinkDelay: Math.random() * 3,
+      blinkDuration: Math.random() * 2 + 1,
     }));
   };
 
-  const stars = generateStars(150);
-  const shootingStars = generateStars(8);
+  const movingStars = generateMovingStars(80);
+  const blinkingStars = generateMovingStars(60);
+  const shootingStars = generateMovingStars(12);
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-      {/* Galaxy Background with 3D Stars */}
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-black via-slate-900 to-black">
+      {/* Smooth Galaxy Background with Moving and Blinking Stars */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        {/* Deep Space Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-radial from-slate-800/50 via-slate-900/80 to-black"></div>
+        {/* Deep Space Gradient with Smooth Transitions */}
+        <div className="absolute inset-0 bg-gradient-radial from-slate-800/30 via-slate-900/60 to-black"></div>
         
-        {/* Nebula Effect */}
+        {/* Smooth Nebula Effects */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-teal-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/8 rounded-full blur-3xl animate-smooth-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-purple-500/8 rounded-full blur-3xl animate-smooth-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-teal-500/8 rounded-full blur-3xl animate-smooth-pulse delay-2000"></div>
         </div>
 
-        {/* 3D Animated Stars */}
-        {stars.map((star) => (
+        {/* Smooth Moving Stars */}
+        {movingStars.map((star) => (
           <div
             key={`star-${star.id}`}
-            className="absolute animate-twinkle"
-            style={{
-              left: `${star.x}%`,
-              top: `${star.y}%`,
-              animationDelay: `${star.twinkleDelay}s`,
-              animationDuration: `${star.animationDuration}s`,
-            }}
-          >
-            <div 
-              className="star-3d bg-white rounded-full shadow-white/50"
-              style={{
-                width: `${star.size}px`,
-                height: `${star.size}px`,
-                opacity: star.opacity,
-                boxShadow: `0 0 ${star.size * 2}px rgba(255, 255, 255, ${star.opacity * 0.8})`,
-              }}
-            />
-          </div>
-        ))}
-
-        {/* Shooting Stars */}
-        {shootingStars.map((star) => (
-          <div
-            key={`shooting-${star.id}`}
-            className="absolute animate-shooting-star"
+            className="absolute animate-smooth-float"
             style={{
               left: `${star.x}%`,
               top: `${star.y}%`,
               animationDelay: `${star.animationDelay}s`,
-              animationDuration: `${star.animationDuration + 2}s`,
-            }}
-          >
-            <div className="shooting-star-trail"></div>
-          </div>
-        ))}
-
-        {/* Distant Galaxies */}
-        {[...Array(4)].map((_, i) => (
-          <div
-            key={`galaxy-${i}`}
-            className="absolute animate-galaxy-rotate"
-            style={{
-              left: `${15 + i * 25}%`,
-              top: `${20 + (i % 2) * 40}%`,
-              animationDelay: `${i * 1.5}s`,
-            }}
+              animationDuration: `${star.animationDuration}s`,
+              '--move-x': `${star.moveX}px`,
+              '--move-y': `${star.moveY}px`,
+            } as React.CSSProperties}
           >
             <div 
-              className="galaxy-spiral bg-gradient-radial from-white/10 via-blue-200/5 to-transparent rounded-full blur-sm"
-              style={{ 
-                width: `${60 + i * 20}px`, 
-                height: `${60 + i * 20}px`,
-                background: `radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(147,197,253,0.05) 30%, transparent 70%)`
+              className="smooth-star bg-white rounded-full shadow-white/80"
+              style={{
+                width: `${star.size}px`,
+                height: `${star.size}px`,
+                opacity: star.opacity,
+                boxShadow: `0 0 ${star.size * 3}px rgba(255, 255, 255, ${star.opacity * 0.8})`,
               }}
             />
           </div>
         ))}
 
-        {/* Constellation Lines */}
-        <svg className="absolute inset-0 w-full h-full opacity-20" style={{ zIndex: 1 }}>
+        {/* Blinking Stars */}
+        {blinkingStars.map((star) => (
+          <div
+            key={`blink-${star.id}`}
+            className="absolute animate-smooth-blink"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              animationDelay: `${star.blinkDelay}s`,
+              animationDuration: `${star.blinkDuration}s`,
+            }}
+          >
+            <div 
+              className="blinking-star bg-white rounded-full"
+              style={{
+                width: `${star.size}px`,
+                height: `${star.size}px`,
+                opacity: star.opacity,
+                boxShadow: `0 0 ${star.size * 4}px rgba(255, 255, 255, 0.9)`,
+              }}
+            />
+          </div>
+        ))}
+
+        {/* Smooth Shooting Stars */}
+        {shootingStars.map((star) => (
+          <div
+            key={`shooting-${star.id}`}
+            className="absolute animate-smooth-shooting"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              animationDelay: `${star.animationDelay}s`,
+              animationDuration: `${star.animationDuration}s`,
+            }}
+          >
+            <div className="smooth-shooting-star"></div>
+          </div>
+        ))}
+
+        {/* Smooth Distant Galaxies */}
+        {[...Array(3)].map((_, i) => (
+          <div
+            key={`galaxy-${i}`}
+            className="absolute animate-smooth-galaxy"
+            style={{
+              left: `${20 + i * 30}%`,
+              top: `${25 + (i % 2) * 35}%`,
+              animationDelay: `${i * 1.5}s`,
+            }}
+          >
+            <div 
+              className="smooth-galaxy bg-gradient-radial from-white/12 via-blue-200/8 to-transparent rounded-full blur-sm"
+              style={{ 
+                width: `${80 + i * 25}px`, 
+                height: `${80 + i * 25}px`,
+                background: `radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(147,197,253,0.08) 30%, transparent 70%)`
+              }}
+            />
+          </div>
+        ))}
+
+        {/* Smooth Constellation Lines */}
+        <svg className="absolute inset-0 w-full h-full opacity-30" style={{ zIndex: 1 }}>
           <defs>
-            <linearGradient id="constellation-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="rgba(255,255,255,0.3)" />
-              <stop offset="100%" stopColor="rgba(255,255,255,0.1)" />
+            <linearGradient id="smooth-constellation-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="rgba(255,255,255,0.4)" />
+              <stop offset="100%" stopColor="rgba(255,255,255,0.2)" />
             </linearGradient>
           </defs>
-          {/* Constellation lines connecting some stars */}
-          <line x1="20%" y1="30%" x2="35%" y2="25%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-pulse" />
-          <line x1="35%" y1="25%" x2="45%" y2="40%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-pulse delay-500" />
-          <line x1="60%" y1="20%" x2="75%" y2="35%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-pulse delay-1000" />
-          <line x1="75%" y1="35%" x2="80%" y2="50%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-pulse delay-1500" />
+          {/* Smooth constellation lines */}
+          <line x1="20%" y1="30%" x2="35%" y2="25%" stroke="url(#smooth-constellation-gradient)" strokeWidth="1" className="animate-smooth-pulse" />
+          <line x1="35%" y1="25%" x2="45%" y2="40%" stroke="url(#smooth-constellation-gradient)" strokeWidth="1" className="animate-smooth-pulse delay-500" />
+          <line x1="60%" y1="20%" x2="75%" y2="35%" stroke="url(#smooth-constellation-gradient)" strokeWidth="1" className="animate-smooth-pulse delay-1000" />
+          <line x1="75%" y1="35%" x2="80%" y2="50%" stroke="url(#smooth-constellation-gradient)" strokeWidth="1" className="animate-smooth-pulse delay-1500" />
         </svg>
       </div>
 

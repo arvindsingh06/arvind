@@ -2,6 +2,41 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Mail, Phone, Linkedin, Github, Instagram, Send, MapPin, Twitter, Facebook, Youtube } from 'lucide-react';
 
 const Contact: React.FC = () => {
+  // Generate small particles like in hero section
+  const particles = Array.from({ length: 60 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 3 + 1,
+    duration: Math.random() * 4 + 3,
+    delay: Math.random() * 3,
+    opacity: Math.random() * 0.6 + 0.2,
+  }));
+
+  // Generate moving stars
+  const movingStars = Array.from({ length: 80 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 2 + 0.5,
+    moveX: (Math.random() - 0.5) * 80,
+    moveY: (Math.random() - 0.5) * 80,
+    duration: Math.random() * 8 + 6,
+    delay: Math.random() * 5,
+    opacity: Math.random() * 0.7 + 0.2,
+  }));
+
+  // Generate blinking stars
+  const blinkingStars = Array.from({ length: 40 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 2.5 + 1,
+    duration: Math.random() * 3 + 2,
+    delay: Math.random() * 4,
+    opacity: Math.random() * 0.5 + 0.3,
+  }));
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const [sectionHeight, setSectionHeight] = useState(0);
 
@@ -124,16 +159,103 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gray-50 dark:bg-slate-800 relative overflow-hidden">
+    <section id="contact" className="py-20 bg-slate-900 relative overflow-hidden">
+      {/* Universe Galaxy Background */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Base gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900"></div>
+        
+        {/* Ambient Light Effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/6 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/6 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-purple-500/4 rounded-full blur-3xl animate-pulse delay-2000"></div>
+        </div>
+
+        {/* Small Moving Particles */}
+        {particles.map((particle) => (
+          <div
+            key={`contact-particle-${particle.id}`}
+            className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-60 animate-universe-float"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              animationDuration: `${particle.duration}s`,
+              animationDelay: `${particle.delay}s`,
+              opacity: particle.opacity,
+            }}
+          />
+        ))}
+
+        {/* Small Moving Stars */}
+        {movingStars.map((star) => (
+          <div
+            key={`contact-moving-star-${star.id}`}
+            className="absolute bg-white rounded-full animate-star-move"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              animationDuration: `${star.duration}s`,
+              animationDelay: `${star.delay}s`,
+              opacity: star.opacity,
+              '--move-x': `${star.moveX}px`,
+              '--move-y': `${star.moveY}px`,
+              boxShadow: `0 0 ${star.size * 3}px rgba(255, 255, 255, ${star.opacity})`,
+            } as React.CSSProperties}
+          />
+        ))}
+
+        {/* Blinking Stars */}
+        {blinkingStars.map((star) => (
+          <div
+            key={`contact-blinking-star-${star.id}`}
+            className="absolute bg-white rounded-full animate-star-blink"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              animationDuration: `${star.duration}s`,
+              animationDelay: `${star.delay}s`,
+              boxShadow: `0 0 ${star.size * 4}px rgba(255, 255, 255, 0.8)`,
+            }}
+          />
+        ))}
+
+        {/* Shooting Stars */}
+        {[...Array(4)].map((_, i) => (
+          <div
+            key={`contact-shooting-star-${i}`}
+            className="absolute animate-shooting-star"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDuration: `${Math.random() * 3 + 2}s`,
+              animationDelay: `${Math.random() * 8 + 2}s`,
+            }}
+          >
+            <div className="shooting-star-trail">
+              <div className="w-2 h-2 bg-white rounded-full relative">
+                <div className="absolute inset-0 bg-white rounded-full animate-pulse"></div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Get In Touch
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto mb-8"></div>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               I'm always open to discussing new opportunities, projects, or just having a chat about technology.
             </p>
           </div>

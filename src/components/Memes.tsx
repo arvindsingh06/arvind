@@ -2,6 +2,41 @@ import React, { useState } from 'react';
 import { Laugh, RefreshCw, Code, Coffee, Bug } from 'lucide-react';
 
 const Memes: React.FC = () => {
+  // Generate small particles like in hero section
+  const particles = Array.from({ length: 45 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 3 + 1,
+    duration: Math.random() * 4 + 3,
+    delay: Math.random() * 3,
+    opacity: Math.random() * 0.6 + 0.2,
+  }));
+
+  // Generate moving stars
+  const movingStars = Array.from({ length: 65 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 2 + 0.5,
+    moveX: (Math.random() - 0.5) * 80,
+    moveY: (Math.random() - 0.5) * 80,
+    duration: Math.random() * 8 + 6,
+    delay: Math.random() * 5,
+    opacity: Math.random() * 0.7 + 0.2,
+  }));
+
+  // Generate blinking stars
+  const blinkingStars = Array.from({ length: 25 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 2.5 + 1,
+    duration: Math.random() * 3 + 2,
+    delay: Math.random() * 4,
+    opacity: Math.random() * 0.5 + 0.3,
+  }));
+
   const [currentMeme, setCurrentMeme] = useState(0);
 
   const memes = [
@@ -110,44 +145,90 @@ const Memes: React.FC = () => {
   const currentMemeData = memes[currentMeme];
 
   return (
-    <section id="memes" className="py-12 bg-gray-50 dark:bg-slate-900 relative overflow-hidden">
-      {/* Transparency Background with Falling Meme Elements */}
+    <section id="memes" className="py-12 bg-slate-900 relative overflow-hidden">
+      {/* Universe Galaxy Background */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        {/* Semi-transparent overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-yellow-50/30 to-orange-50/20 dark:from-yellow-900/10 dark:to-orange-900/5"></div>
+        {/* Base gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900"></div>
         
-        {/* Falling Meme Emojis */}
-        {[...Array(8)].map((_, i) => (
+        {/* Ambient Light Effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-yellow-500/4 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-500/4 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-amber-500/3 rounded-full blur-3xl animate-pulse delay-2000"></div>
+        </div>
+
+        {/* Small Moving Particles */}
+        {particles.map((particle) => (
           <div
-            key={`falling-meme-${i}`}
-            className="absolute falling-meme"
+            key={`memes-particle-${particle.id}`}
+            className="absolute w-1 h-1 bg-yellow-400 rounded-full opacity-60 animate-universe-float"
             style={{
-              left: `${5 + i * 12}%`,
-              animationDelay: `${i * 0.8}s`,
-              animationDuration: `${3 + i * 0.5}s`,
-              fontSize: `${20 + i * 3}px`,
-              opacity: 0.6,
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              animationDuration: `${particle.duration}s`,
+              animationDelay: `${particle.delay}s`,
+              opacity: particle.opacity,
             }}
-          >
-            {['😂', '🤣', '😆', '😄', '🤓', '😅', '🤪', '😜'][i % 8]}
-          </div>
+          />
+        ))}
+
+        {/* Small Moving Stars */}
+        {movingStars.map((star) => (
+          <div
+            key={`memes-moving-star-${star.id}`}
+            className="absolute bg-white rounded-full animate-star-move"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              animationDuration: `${star.duration}s`,
+              animationDelay: `${star.delay}s`,
+              opacity: star.opacity,
+              '--move-x': `${star.moveX}px`,
+              '--move-y': `${star.moveY}px`,
+              boxShadow: `0 0 ${star.size * 3}px rgba(255, 255, 255, ${star.opacity})`,
+            } as React.CSSProperties}
+          />
+        ))}
+
+        {/* Blinking Stars */}
+        {blinkingStars.map((star) => (
+          <div
+            key={`memes-blinking-star-${star.id}`}
+            className="absolute bg-white rounded-full animate-star-blink"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              animationDuration: `${star.duration}s`,
+              animationDelay: `${star.delay}s`,
+              boxShadow: `0 0 ${star.size * 4}px rgba(255, 255, 255, 0.8)`,
+            }}
+          />
         ))}
         
-        {/* Floating Laughing Elements */}
-        {[...Array(6)].map((_, i) => (
+        {/* Shooting Stars */}
+        {[...Array(2)].map((_, i) => (
           <div
-            key={`floating-laugh-${i}`}
-            className="absolute floating-laugh"
+            key={`memes-shooting-star-${i}`}
+            className="absolute animate-shooting-star"
             style={{
-              left: `${15 + i * 15}%`,
-              top: `${20 + (i % 2) * 30}%`,
-              animationDelay: `${i * 1.2}s`,
-              animationDuration: `${4 + i * 0.3}s`,
-              fontSize: `${16 + i * 2}px`,
-              opacity: 0.4,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDuration: `${Math.random() * 3 + 2}s`,
+              animationDelay: `${Math.random() * 8 + 2}s`,
             }}
           >
-            {['😊', '😋', '😎', '🤗', '😌', '😉'][i % 6]}
+            <div className="shooting-star-trail">
+              <div className="w-2 h-2 bg-white rounded-full relative">
+                <div className="absolute inset-0 bg-white rounded-full animate-pulse"></div>
+              </div>
+            </div>
           </div>
         ))}
       </div>
@@ -158,13 +239,14 @@ const Memes: React.FC = () => {
           <div className="text-center mb-8">
             <div className="flex items-center justify-center space-x-2 mb-2">
               <Laugh className="w-6 h-6 text-yellow-500" />
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+              <h2 className="text-3xl md:text-4xl font-bold text-white">
                 Developer Memes
               </h2>
               <Laugh className="w-6 h-6 text-yellow-500" />
             </div>
             <div className="w-16 h-1 bg-gradient-to-r from-yellow-500 to-orange-500 mx-auto mb-4"></div>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
+            <p className="text-sm text-gray-400 max-w-xl mx-auto">
               Because every developer needs some humor in their debugging sessions! 😄
             </p>
           </div>

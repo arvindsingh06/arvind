@@ -2,57 +2,126 @@ import React from 'react';
 import { Briefcase, User, Award, Calendar, MapPin } from 'lucide-react';
 
 const Internship: React.FC = () => {
+  // Generate small particles like in hero section
+  const particles = Array.from({ length: 50 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 3 + 1,
+    duration: Math.random() * 4 + 3,
+    delay: Math.random() * 3,
+    opacity: Math.random() * 0.6 + 0.2,
+  }));
+
+  // Generate moving stars
+  const movingStars = Array.from({ length: 70 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 2 + 0.5,
+    moveX: (Math.random() - 0.5) * 80,
+    moveY: (Math.random() - 0.5) * 80,
+    duration: Math.random() * 8 + 6,
+    delay: Math.random() * 5,
+    opacity: Math.random() * 0.7 + 0.2,
+  }));
+
+  // Generate blinking stars
+  const blinkingStars = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 2.5 + 1,
+    duration: Math.random() * 3 + 2,
+    delay: Math.random() * 4,
+    opacity: Math.random() * 0.5 + 0.3,
+  }));
+
   return (
-    <section id="internship" className="py-20 bg-white dark:bg-slate-900 relative overflow-hidden">
-      {/* 3D Animated Background */}
+    <section id="internship" className="py-20 bg-slate-900 relative overflow-hidden">
+      {/* Universe Galaxy Background */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        {/* Floating Company Icons (briefcase, building) */}
-        {[...Array(4)].map((_, i) => (
+        {/* Base gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900"></div>
+        
+        {/* Ambient Light Effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/6 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/6 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-purple-500/4 rounded-full blur-3xl animate-pulse delay-2000"></div>
+        </div>
+
+        {/* Small Moving Particles */}
+        {particles.map((particle) => (
           <div
-            key={`internship-icon-${i}`}
-            className="absolute animate-spin-slow"
+            key={`internship-particle-${particle.id}`}
+            className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-60 animate-universe-float"
             style={{
-              left: `${12 + i * 22}%`,
-              top: `${18 + (i % 2) * 40}%`,
-              animationDelay: `${i * 0.7}s`,
-              zIndex: 0,
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              animationDuration: `${particle.duration}s`,
+              animationDelay: `${particle.delay}s`,
+              opacity: particle.opacity,
             }}
-          >
-            {i % 2 === 0 ? (
-              <svg width="54" height="54" viewBox="0 0 54 54" fill="none"><rect x="10" y="20" width="34" height="20" rx="6" fill="#6366f1" opacity="0.13"/><rect x="18" y="12" width="18" height="12" rx="4" fill="#fbbf24" opacity="0.13"/></svg>
-            ) : (
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="16" width="32" height="24" rx="5" fill="#14b8a6" opacity="0.13"/><rect x="16" y="8" width="16" height="12" rx="3" fill="#f472b6" opacity="0.13"/></svg>
-            )}
-          </div>
+          />
         ))}
-        {/* Floating Abstract Waves */}
-        {[...Array(2)].map((_, i) => (
+
+        {/* Small Moving Stars */}
+        {movingStars.map((star) => (
           <div
-            key={`internship-wave-${i}`}
-            className="absolute internship-wave"
+            key={`internship-moving-star-${star.id}`}
+            className="absolute bg-white rounded-full animate-star-move"
             style={{
-              left: `${30 + i * 30}%`,
-              top: `${25 + i * 30}%`,
-              animationDelay: `${i * 1.1}s`,
-              zIndex: 0,
-            }}
-          >
-            <div style={{ width: 120, height: 24, borderRadius: 12, background: 'linear-gradient(90deg, #6366f1 0%, #14b8a6 100%)', opacity: 0.10, filter: 'blur(2px)' }}></div>
-          </div>
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              animationDuration: `${star.duration}s`,
+              animationDelay: `${star.delay}s`,
+              opacity: star.opacity,
+              '--move-x': `${star.moveX}px`,
+              '--move-y': `${star.moveY}px`,
+              boxShadow: `0 0 ${star.size * 3}px rgba(255, 255, 255, ${star.opacity})`,
+            } as React.CSSProperties}
+          />
         ))}
-        {/* Floating Polygons */}
-        {[...Array(2)].map((_, i) => (
+
+        {/* Blinking Stars */}
+        {blinkingStars.map((star) => (
           <div
-            key={`internship-polygon-${i}`}
-            className="absolute animate-spin-slow"
+            key={`internship-blinking-star-${star.id}`}
+            className="absolute bg-white rounded-full animate-star-blink"
             style={{
-              left: `${60 + i * 15}%`,
-              top: `${10 + i * 50}%`,
-              animationDelay: `${i * 0.9}s`,
-              zIndex: 0,
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              animationDuration: `${star.duration}s`,
+              animationDelay: `${star.delay}s`,
+              boxShadow: `0 0 ${star.size * 4}px rgba(255, 255, 255, 0.8)`,
+            }}
+          />
+        ))}
+
+        {/* Shooting Stars */}
+        {[...Array(3)].map((_, i) => (
+          <div
+            key={`internship-shooting-star-${i}`}
+            className="absolute animate-shooting-star"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDuration: `${Math.random() * 3 + 2}s`,
+              animationDelay: `${Math.random() * 8 + 2}s`,
             }}
           >
-            <div style={{ width: 40, height: 40, clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)', background: 'linear-gradient(135deg, #fbbf24 0%, #f472b6 100%)', opacity: 0.13 }}></div>
+            <div className="shooting-star-trail">
+              <div className="w-2 h-2 bg-white rounded-full relative">
+                <div className="absolute inset-0 bg-white rounded-full animate-pulse"></div>
+              </div>
+            </div>
           </div>
         ))}
       </div>
@@ -60,11 +129,12 @@ const Internship: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Internship Experience
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto mb-8"></div>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Gaining valuable industry experience and mentorship in AI/ML development.
             </p>
           </div>

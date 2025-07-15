@@ -2,6 +2,41 @@ import React, { useRef, useEffect, useState } from 'react';
 import { GraduationCap, Calendar, MapPin } from 'lucide-react';
 
 const Education: React.FC = () => {
+  // Generate small particles like in hero section
+  const particles = Array.from({ length: 55 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 3 + 1,
+    duration: Math.random() * 4 + 3,
+    delay: Math.random() * 3,
+    opacity: Math.random() * 0.6 + 0.2,
+  }));
+
+  // Generate moving stars
+  const movingStars = Array.from({ length: 75 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 2 + 0.5,
+    moveX: (Math.random() - 0.5) * 80,
+    moveY: (Math.random() - 0.5) * 80,
+    duration: Math.random() * 8 + 6,
+    delay: Math.random() * 5,
+    opacity: Math.random() * 0.7 + 0.2,
+  }));
+
+  // Generate blinking stars
+  const blinkingStars = Array.from({ length: 35 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 2.5 + 1,
+    duration: Math.random() * 3 + 2,
+    delay: Math.random() * 4,
+    opacity: Math.random() * 0.5 + 0.3,
+  }));
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const [sectionHeight, setSectionHeight] = useState(0);
 
@@ -58,54 +93,90 @@ const Education: React.FC = () => {
   ];
 
   return (
-    <section id="education" className="py-20 bg-gray-50 dark:bg-slate-900 relative overflow-hidden">
-      {/* 3D Animated Falling Background */}
-      <div ref={sectionRef} className="absolute inset-0 pointer-events-none z-0">
-        {/* Enhanced Falling Academic Icons */}
-        {[
-          { type: 'icon', svg: <GraduationCap className="w-10 h-10 text-blue-500 opacity-30" /> },
-          { type: 'emoji', svg: <span className="text-3xl">📜</span> },
-          { type: 'emoji', svg: <span className="text-3xl">📚</span> },
-          { type: 'emoji', svg: <span className="text-3xl">🎓</span> },
-          { type: 'emoji', svg: <span className="text-3xl">✏️</span> },
-          { type: 'emoji', svg: <span className="text-3xl">📝</span> },
-          { type: 'emoji', svg: <span className="text-3xl">📖</span> },
-          { type: 'emoji', svg: <span className="text-3xl">📋</span> },
-          { type: 'emoji', svg: <span className="text-3xl">🎯</span> },
-          { type: 'emoji', svg: <span className="text-3xl">💡</span> },
-          { type: 'svg', svg: <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="8" y="12" width="24" height="16" rx="4" fill="#fbbf24" opacity="0.18"/><rect x="14" y="18" width="12" height="4" rx="2" fill="#6366f1" opacity="0.18"/></svg> },
-          { type: 'svg', svg: <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" fill="#14b8a6" opacity="0.13"/><rect x="14" y="14" width="12" height="12" rx="3" fill="#f472b6" opacity="0.18"/></svg> },
-        ].map((item, i) => (
+    <section id="education" className="py-20 bg-slate-900 relative overflow-hidden">
+      {/* Universe Galaxy Background */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Base gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900"></div>
+        
+        {/* Ambient Light Effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/6 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/6 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-purple-500/4 rounded-full blur-3xl animate-pulse delay-2000"></div>
+        </div>
+
+        {/* Small Moving Particles */}
+        {particles.map((particle) => (
           <div
-            key={`edu-fall-enhanced-${i}`}
-            className="absolute animate-fall"
+            key={`education-particle-${particle.id}`}
+            className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-60 animate-universe-float"
             style={{
-              left: `${8 + i * 8 + Math.random() * 15}%`,
-              top: `-${40 + i * 25}px`,
-              animationDelay: `${i * 0.5}s`,
-              zIndex: 0,
-              animationDuration: `${2.5 + i * 0.6}s`,
-              '--fall-distance': `${sectionHeight + 120}px`,
-            } as React.CSSProperties}
-          >
-            {item.svg}
-          </div>
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              animationDuration: `${particle.duration}s`,
+              animationDelay: `${particle.delay}s`,
+              opacity: particle.opacity,
+            }}
+          />
         ))}
-        {/* Falling Glowing Particles */}
-        {[...Array(5)].map((_, i) => (
+
+        {/* Small Moving Stars */}
+        {movingStars.map((star) => (
           <div
-            key={`edu-fall-particle-${i}`}
-            className="absolute animate-fall"
+            key={`education-moving-star-${star.id}`}
+            className="absolute bg-white rounded-full animate-star-move"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              animationDuration: `${star.duration}s`,
+              animationDelay: `${star.delay}s`,
+              opacity: star.opacity,
+              '--move-x': `${star.moveX}px`,
+              '--move-y': `${star.moveY}px`,
+              boxShadow: `0 0 ${star.size * 3}px rgba(255, 255, 255, ${star.opacity})`,
+            } as React.CSSProperties}
+          />
+        ))}
+
+        {/* Blinking Stars */}
+        {blinkingStars.map((star) => (
+          <div
+            key={`education-blinking-star-${star.id}`}
+            className="absolute bg-white rounded-full animate-star-blink"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              animationDuration: `${star.duration}s`,
+              animationDelay: `${star.delay}s`,
+              boxShadow: `0 0 ${star.size * 4}px rgba(255, 255, 255, 0.8)`,
+            }}
+          />
+        ))}
+
+        {/* Shooting Stars */}
+        {[...Array(3)].map((_, i) => (
+          <div
+            key={`education-shooting-star-${i}`}
+            className="absolute animate-shooting-star"
             style={{
               left: `${Math.random() * 100}%`,
-              top: `-${60 + i * 20}px`,
-              animationDelay: `${i * 0.4}s`,
-              zIndex: 0,
-              animationDuration: `${2.5 + i * 0.5}s`,
-              '--fall-distance': `${sectionHeight + 80}px`,
-            } as React.CSSProperties}
+              top: `${Math.random() * 100}%`,
+              animationDuration: `${Math.random() * 3 + 2}s`,
+              animationDelay: `${Math.random() * 8 + 2}s`,
+            }}
           >
-            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-teal-400 opacity-20 blur"></div>
+            <div className="shooting-star-trail">
+              <div className="w-2 h-2 bg-white rounded-full relative">
+                <div className="absolute inset-0 bg-white rounded-full animate-pulse"></div>
+              </div>
+            </div>
           </div>
         ))}
       </div>
@@ -113,11 +184,12 @@ const Education: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Education
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto mb-8"></div>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               My educational journey and academic achievements.
             </p>
           </div>

@@ -71,17 +71,18 @@ const About: React.FC = () => {
         {/* Base gradient background */}
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900"></div>
         
-        {/* Ambient Light Effects */}
+        {/* Ambient Light Effects like preloader */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/6 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/6 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-purple-500/4 rounded-full blur-3xl animate-pulse delay-2000"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/8 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/8 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-purple-500/6 rounded-full blur-3xl animate-pulse delay-2000"></div>
+          <div className="absolute top-1/6 right-1/3 w-80 h-80 bg-orange-500/6 rounded-full blur-3xl animate-pulse delay-3000"></div>
         </div>
 
-        {/* Small Moving Particles */}
+        {/* Small Moving Particles like preloader */}
         {particles.map((particle) => (
           <div
-            key={`about-particle-${particle.id}`}
+            key={`particle-${particle.id}`}
             className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-60 animate-universe-float"
             style={{
               left: `${particle.x}%`,
@@ -98,7 +99,7 @@ const About: React.FC = () => {
         {/* Small Moving Stars */}
         {movingStars.map((star) => (
           <div
-            key={`about-moving-star-${star.id}`}
+            key={`moving-star-${star.id}`}
             className="absolute bg-white rounded-full animate-star-move"
             style={{
               left: `${star.x}%`,
@@ -118,7 +119,7 @@ const About: React.FC = () => {
         {/* Blinking Stars */}
         {blinkingStars.map((star) => (
           <div
-            key={`about-blinking-star-${star.id}`}
+            key={`blinking-star-${star.id}`}
             className="absolute bg-white rounded-full animate-star-blink"
             style={{
               left: `${star.x}%`,
@@ -132,10 +133,57 @@ const About: React.FC = () => {
           />
         ))}
 
-        {/* Shooting Stars */}
-        {[...Array(4)].map((_, i) => (
+        {/* Twinkling Stars with Cross Effect */}
+        {twinklingStars.map((star) => (
           <div
-            key={`about-shooting-star-${i}`}
+            key={`twinkling-star-${star.id}`}
+            className="absolute animate-star-twinkle"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              animationDuration: `${star.duration}s`,
+              animationDelay: `${star.delay}s`,
+            }}
+          >
+            <div 
+              className="bg-white rounded-full relative"
+              style={{
+                width: `${star.size}px`,
+                height: `${star.size}px`,
+                boxShadow: `0 0 ${star.size * 6}px rgba(255, 255, 255, 0.9)`,
+              }}
+            >
+              {/* Cross effect */}
+              <div 
+                className="absolute bg-white opacity-80"
+                style={{
+                  left: '50%',
+                  top: '50%',
+                  width: `${star.size * 4}px`,
+                  height: '1px',
+                  transform: 'translate(-50%, -50%)',
+                  boxShadow: `0 0 ${star.size * 2}px rgba(255, 255, 255, 0.6)`,
+                }}
+              />
+              <div 
+                className="absolute bg-white opacity-80"
+                style={{
+                  left: '50%',
+                  top: '50%',
+                  width: '1px',
+                  height: `${star.size * 4}px`,
+                  transform: 'translate(-50%, -50%)',
+                  boxShadow: `0 0 ${star.size * 2}px rgba(255, 255, 255, 0.6)`,
+                }}
+              />
+            </div>
+          </div>
+        ))}
+
+        {/* Shooting Stars */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={`shooting-star-${i}`}
             className="absolute animate-shooting-star"
             style={{
               left: `${Math.random() * 100}%`,
@@ -149,6 +197,47 @@ const About: React.FC = () => {
                 <div className="absolute inset-0 bg-white rounded-full animate-pulse"></div>
               </div>
             </div>
+          </div>
+        ))}
+
+        {/* Constellation Lines */}
+        <svg className="absolute inset-0 w-full h-full opacity-20" style={{ zIndex: 1 }}>
+          <defs>
+            <linearGradient id="constellation-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="rgba(255,255,255,0.4)" />
+              <stop offset="50%" stopColor="rgba(255,255,255,0.2)" />
+              <stop offset="100%" stopColor="rgba(255,255,255,0.1)" />
+            </linearGradient>
+          </defs>
+          
+          <line x1="15%" y1="25%" x2="30%" y2="20%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" />
+          <line x1="30%" y1="20%" x2="40%" y2="35%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" style={{ animationDelay: '0.5s' }} />
+          <line x1="40%" y1="35%" x2="25%" y2="45%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" style={{ animationDelay: '1s' }} />
+          
+          <line x1="65%" y1="15%" x2="80%" y2="30%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" style={{ animationDelay: '1.5s' }} />
+          <line x1="80%" y1="30%" x2="85%" y2="45%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" style={{ animationDelay: '2s' }} />
+          <line x1="85%" y1="45%" x2="70%" y2="55%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" style={{ animationDelay: '2.5s' }} />
+        </svg>
+
+        {/* Cosmic Dust */}
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={`dust-${i}`}
+            className="absolute opacity-40 animate-cosmic-drift"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+            }}
+          >
+            <div 
+              className="bg-white rounded-full"
+              style={{
+                width: `${Math.random() * 1.5 + 0.5}px`,
+                height: `${Math.random() * 1.5 + 0.5}px`,
+                boxShadow: `0 0 ${Math.random() * 3 + 1}px rgba(255, 255, 255, 0.3)`,
+              }}
+            />
           </div>
         ))}
       </div>

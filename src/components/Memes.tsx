@@ -107,7 +107,7 @@ const Memes: React.FC = () => {
         {/* Base gradient background */}
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900"></div>
         
-        {/* Ambient Light Effects */}
+        {/* Ambient Light Effects like preloader */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/8 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/8 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -115,10 +115,10 @@ const Memes: React.FC = () => {
           <div className="absolute top-1/6 right-1/3 w-80 h-80 bg-orange-500/6 rounded-full blur-3xl animate-pulse delay-3000"></div>
         </div>
 
-        {/* Small Moving Particles */}
+        {/* Small Moving Particles like preloader */}
         {particles.map((particle) => (
           <div
-            key={`memes-particle-${particle.id}`}
+            key={`particle-${particle.id}`}
             className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-60 animate-universe-float"
             style={{
               left: `${particle.x}%`,
@@ -135,7 +135,7 @@ const Memes: React.FC = () => {
         {/* Small Moving Stars */}
         {movingStars.map((star) => (
           <div
-            key={`memes-moving-star-${star.id}`}
+            key={`moving-star-${star.id}`}
             className="absolute bg-white rounded-full animate-star-move"
             style={{
               left: `${star.x}%`,
@@ -155,7 +155,7 @@ const Memes: React.FC = () => {
         {/* Blinking Stars */}
         {blinkingStars.map((star) => (
           <div
-            key={`memes-blinking-star-${star.id}`}
+            key={`blinking-star-${star.id}`}
             className="absolute bg-white rounded-full animate-star-blink"
             style={{
               left: `${star.x}%`,
@@ -172,7 +172,7 @@ const Memes: React.FC = () => {
         {/* Twinkling Stars with Cross Effect */}
         {twinklingStars.map((star) => (
           <div
-            key={`memes-twinkling-star-${star.id}`}
+            key={`twinkling-star-${star.id}`}
             className="absolute animate-star-twinkle"
             style={{
               left: `${star.x}%`,
@@ -219,7 +219,7 @@ const Memes: React.FC = () => {
         {/* Shooting Stars */}
         {[...Array(8)].map((_, i) => (
           <div
-            key={`memes-shooting-star-${i}`}
+            key={`shooting-star-${i}`}
             className="absolute animate-shooting-star"
             style={{
               left: `${Math.random() * 100}%`,
@@ -239,26 +239,26 @@ const Memes: React.FC = () => {
         {/* Constellation Lines */}
         <svg className="absolute inset-0 w-full h-full opacity-20" style={{ zIndex: 1 }}>
           <defs>
-            <linearGradient id="memes-constellation-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="constellation-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="rgba(255,255,255,0.4)" />
               <stop offset="50%" stopColor="rgba(255,255,255,0.2)" />
               <stop offset="100%" stopColor="rgba(255,255,255,0.1)" />
             </linearGradient>
           </defs>
           
-          <line x1="15%" y1="25%" x2="30%" y2="20%" stroke="url(#memes-constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" />
-          <line x1="30%" y1="20%" x2="40%" y2="35%" stroke="url(#memes-constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" style={{ animationDelay: '0.5s' }} />
-          <line x1="40%" y1="35%" x2="25%" y2="45%" stroke="url(#memes-constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" style={{ animationDelay: '1s' }} />
+          <line x1="15%" y1="25%" x2="30%" y2="20%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" />
+          <line x1="30%" y1="20%" x2="40%" y2="35%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" style={{ animationDelay: '0.5s' }} />
+          <line x1="40%" y1="35%" x2="25%" y2="45%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" style={{ animationDelay: '1s' }} />
           
-          <line x1="65%" y1="15%" x2="80%" y2="30%" stroke="url(#memes-constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" style={{ animationDelay: '1.5s' }} />
-          <line x1="80%" y1="30%" x2="85%" y2="45%" stroke="url(#memes-constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" style={{ animationDelay: '2s' }} />
-          <line x1="85%" y1="45%" x2="70%" y2="55%" stroke="url(#memes-constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" style={{ animationDelay: '2.5s' }} />
+          <line x1="65%" y1="15%" x2="80%" y2="30%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" style={{ animationDelay: '1.5s' }} />
+          <line x1="80%" y1="30%" x2="85%" y2="45%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" style={{ animationDelay: '2s' }} />
+          <line x1="85%" y1="45%" x2="70%" y2="55%" stroke="url(#constellation-gradient)" strokeWidth="1" className="animate-constellation-draw" style={{ animationDelay: '2.5s' }} />
         </svg>
 
         {/* Cosmic Dust */}
         {[...Array(30)].map((_, i) => (
           <div
-            key={`memes-dust-${i}`}
+            key={`dust-${i}`}
             className="absolute opacity-40 animate-cosmic-drift"
             style={{
               left: `${Math.random() * 100}%`,

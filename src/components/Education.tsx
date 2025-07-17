@@ -26,27 +26,6 @@ const Education: React.FC = () => {
     opacity: Math.random() * 0.9 + 0.1,
   }));
 
-  // Generate blinking stars
-  const blinkingStars = Array.from({ length: 60 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 2.5 + 1,
-    duration: Math.random() * 3 + 2,
-    delay: Math.random() * 4,
-    opacity: Math.random() * 0.7 + 0.3,
-  }));
-
-  // Generate twinkling stars
-  const twinklingStars = Array.from({ length: 40 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 1.5 + 0.8,
-    duration: Math.random() * 2.5 + 1.5,
-    delay: Math.random() * 3,
-  }));
-
   const educationData = [
     {
       degree: 'Bachelor of Technology in Information Technology',
@@ -148,70 +127,6 @@ const Education: React.FC = () => {
               boxShadow: `0 0 ${star.size * 3}px rgba(255, 255, 255, ${star.opacity})`,
             } as React.CSSProperties}
           />
-        ))}
-
-        {/* Blinking Stars */}
-        {blinkingStars.map((star) => (
-          <div
-            key={`blinking-star-${star.id}`}
-            className="absolute bg-white rounded-full animate-star-blink"
-            style={{
-              left: `${star.x}%`,
-              top: `${star.y}%`,
-              width: `${star.size}px`,
-              height: `${star.size}px`,
-              animationDuration: `${star.duration}s`,
-              animationDelay: `${star.delay}s`,
-              boxShadow: `0 0 ${star.size * 4}px rgba(255, 255, 255, 0.8)`,
-            }}
-          />
-        ))}
-
-        {/* Twinkling Stars with Cross Effect */}
-        {twinklingStars.map((star) => (
-          <div
-            key={`twinkling-star-${star.id}`}
-            className="absolute animate-star-twinkle"
-            style={{
-              left: `${star.x}%`,
-              top: `${star.y}%`,
-              animationDuration: `${star.duration}s`,
-              animationDelay: `${star.delay}s`,
-            }}
-          >
-            <div 
-              className="bg-white rounded-full relative"
-              style={{
-                width: `${star.size}px`,
-                height: `${star.size}px`,
-                boxShadow: `0 0 ${star.size * 6}px rgba(255, 255, 255, 0.9)`,
-              }}
-            >
-              {/* Cross effect */}
-              <div 
-                className="absolute bg-white opacity-80"
-                style={{
-                  left: '50%',
-                  top: '50%',
-                  width: `${star.size * 4}px`,
-                  height: '1px',
-                  transform: 'translate(-50%, -50%)',
-                  boxShadow: `0 0 ${star.size * 2}px rgba(255, 255, 255, 0.6)`,
-                }}
-              />
-              <div 
-                className="absolute bg-white opacity-80"
-                style={{
-                  left: '50%',
-                  top: '50%',
-                  width: '1px',
-                  height: `${star.size * 4}px`,
-                  transform: 'translate(-50%, -50%)',
-                  boxShadow: `0 0 ${star.size * 2}px rgba(255, 255, 255, 0.6)`,
-                }}
-              />
-            </div>
-          </div>
         ))}
 
         {/* Shooting Stars */}

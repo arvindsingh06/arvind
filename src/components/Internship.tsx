@@ -26,27 +26,6 @@ const Internship: React.FC = () => {
     opacity: Math.random() * 0.9 + 0.1,
   }));
 
-  // Generate blinking stars
-  const blinkingStars = Array.from({ length: 60 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 2.5 + 1,
-    duration: Math.random() * 3 + 2,
-    delay: Math.random() * 4,
-    opacity: Math.random() * 0.7 + 0.3,
-  }));
-
-  // Generate twinkling stars
-  const twinklingStars = Array.from({ length: 40 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 1.5 + 0.8,
-    duration: Math.random() * 2.5 + 1.5,
-    delay: Math.random() * 3,
-  }));
-
   const internshipData = {
     position: 'AI/ML Intern',
     company: 'Linux World Pvt. Ltd.',

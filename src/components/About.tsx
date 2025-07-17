@@ -37,6 +37,17 @@ const About: React.FC = () => {
     opacity: Math.random() * 0.5 + 0.3,
   }));
 
+  // Generate twinkling stars
+  const twinklingStars = Array.from({ length: 25 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 2 + 1,
+    duration: Math.random() * 4 + 2,
+    delay: Math.random() * 3,
+    opacity: Math.random() * 0.8 + 0.2,
+  }));
+
   const infoCards = [
     {
       icon: User,

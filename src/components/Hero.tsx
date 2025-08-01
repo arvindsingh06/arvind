@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Download } from 'lucide-react';
-import profileImg from '../assets/profile.jpg';
 
 const Hero: React.FC = () => {
   const [typedText, setTypedText] = useState('');
@@ -255,7 +254,11 @@ const Hero: React.FC = () => {
           {/* Profile Image with Glow Effect */}
           <div className="mb-8 animate-fade-in-up">
             <div className="w-40 h-40 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-teal-500 flex items-center justify-center shadow-2xl overflow-hidden ring-4 ring-white/20 ring-offset-4 ring-offset-transparent relative">
-              <img src={profileImg} alt="Profile" className="w-full h-full object-cover rounded-full" />
+              <img 
+                src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop" 
+                alt="Arvind Singh Rathore - AI/ML Engineer" 
+                className="w-full h-full object-cover rounded-full" 
+              />
               {/* Glow effect around profile */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/20 via-white/10 to-teal-400/20 animate-profile-glow"></div>
             </div>

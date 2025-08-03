@@ -12,7 +12,7 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
           setIsComplete(true);
           setTimeout(() => {
             onComplete();
-          }, 500);
+          }, 300);
           return 100;
         }
         return prev + 2;

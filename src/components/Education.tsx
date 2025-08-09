@@ -290,102 +290,130 @@ const Education: React.FC = () => {
           </div>
 
           {/* Education Timeline */}
-          <div className="space-y-8">
-            {educationData.map((edu, index) => (
-              <div
-                key={index}
-                className="group relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/20 hover:shadow-2xl transition-all duration-500 transform hover:scale-105"
-              >
-                {/* Decorative Elements */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden rounded-2xl">
-                  {/* Academic symbols */}
-                  {[...Array(8)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute academic-symbol"
-                      style={{
-                        left: `${5 + (i * 12)}%`,
-                        top: `${10 + (i * 8)}%`,
-                        animationDelay: `${i * 0.2}s`,
-                      }}
-                    >
-                      <div className={`hexagon bg-gradient-to-br ${edu.color} opacity-15`}></div>
-                    </div>
-                  ))}
+          <div className="relative">
+            {/* Vertical Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 via-teal-500 to-purple-500 rounded-full shadow-lg"></div>
+            
+            {/* Timeline Items */}
+            <div className="space-y-16">
+              {educationData.map((edu, index) => (
+                <div
+                  key={index}
+                  className={`relative flex items-center ${
+                    index % 2 === 0 ? 'justify-start' : 'justify-end'
+                  }`}
+                >
+                  {/* Timeline Node */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 z-20">
+                    <div className={`w-6 h-6 rounded-full bg-gradient-to-r ${edu.color} border-4 border-slate-900 shadow-lg animate-pulse`}></div>
+                  </div>
                   
-                  {/* Knowledge particles */}
-                  {[...Array(12)].map((_, i) => (
-                    <div
-                      key={`knowledge-${i}`}
-                      className="absolute knowledge-particle"
-                      style={{
-                        right: `${Math.random() * 100}%`,
-                        bottom: `${Math.random() * 100}%`,
-                        animationDelay: `${i * 0.1}s`,
-                      }}
-                    >
-                      <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${edu.color} opacity-25`}></div>
-                    </div>
-                  ))}
+                  {/* Education Card */}
+                  <div className={`group relative w-full max-w-md ${
+                    index % 2 === 0 ? 'mr-8 pr-8' : 'ml-8 pl-8'
+                  }`}>
+                    {/* Connector Line */}
+                    <div className={`absolute top-1/2 transform -translate-y-1/2 w-8 h-0.5 bg-gradient-to-r ${edu.color} ${
+                      index % 2 === 0 ? 'right-0' : 'left-0'
+                    }`}></div>
+                    
+                    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 relative overflow-hidden">
+                      {/* Decorative Elements */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden rounded-2xl">
+                        {/* Academic symbols */}
+                        {[...Array(6)].map((_, i) => (
+                          <div
+                            key={i}
+                            className="absolute academic-symbol"
+                            style={{
+                              left: `${5 + (i * 15)}%`,
+                              top: `${10 + (i * 12)}%`,
+                              animationDelay: `${i * 0.2}s`,
+                            }}
+                          >
+                            <div className={`hexagon bg-gradient-to-br ${edu.color} opacity-15`}></div>
+                          </div>
+                        ))}
+                        
+                        {/* Knowledge particles */}
+                        {[...Array(8)].map((_, i) => (
+                          <div
+                            key={`knowledge-${i}`}
+                            className="absolute knowledge-particle"
+                            style={{
+                              right: `${Math.random() * 100}%`,
+                              bottom: `${Math.random() * 100}%`,
+                              animationDelay: `${i * 0.1}s`,
+                            }}
+                          >
+                            <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${edu.color} opacity-25`}></div>
+                          </div>
+                        ))}
 
-                  {/* Education wave */}
-                  <div className="absolute inset-0 education-wave">
-                    <div className={`w-full h-full bg-gradient-to-r ${edu.color} opacity-5`}></div>
-                  </div>
-                </div>
-
-                <div className="relative z-10 flex flex-col md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-6">
-                  {/* Icon */}
-                  <div className={`flex-shrink-0 p-4 rounded-xl bg-gradient-to-r ${edu.color} text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg`}>
-                    <edu.icon className="w-8 h-8" />
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex-1">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-blue-400 group-hover:to-teal-400 transition-all duration-500">
-                        {edu.degree}
-                      </h3>
-                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gradient-to-r ${edu.color} text-white mt-2 md:mt-0`}>
-                        {edu.status}
-                      </span>
-                    </div>
-
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center text-gray-300">
-                        <GraduationCap className="w-4 h-4 mr-2" />
-                        <span className="font-medium">{edu.institution}</span>
-                      </div>
-                      <div className="flex items-center text-gray-400">
-                        <Calendar className="w-4 h-4 mr-2" />
-                        <span>{edu.duration}</span>
-                      </div>
-                      <div className="flex items-center text-gray-400">
-                        <MapPin className="w-4 h-4 mr-2" />
-                        <span>{edu.location}</span>
-                      </div>
-                    </div>
-
-                    <p className="text-gray-300 mb-6 leading-relaxed">
-                      {edu.description}
-                    </p>
-
-                    {/* Highlights */}
-                    <div className="grid md:grid-cols-2 gap-3">
-                      {edu.highlights.map((highlight, highlightIndex) => (
-                        <div
-                          key={highlightIndex}
-                          className="flex items-center text-gray-300 bg-white/5 rounded-lg p-3 hover:bg-white/10 transition-colors duration-300"
-                        >
-                          <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${edu.color} mr-3 flex-shrink-0`}></div>
-                          <span className="text-sm">{highlight}</span>
+                        {/* Education wave */}
+                        <div className="absolute inset-0 education-wave">
+                          <div className={`w-full h-full bg-gradient-to-r ${edu.color} opacity-5`}></div>
                         </div>
-                      ))}
+                      </div>
+
+                      <div className="relative z-10">
+                        {/* Header with Icon and Status */}
+                        <div className="flex items-center justify-between mb-4">
+                          <div className={`p-3 rounded-xl bg-gradient-to-r ${edu.color} text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg`}>
+                            <edu.icon className="w-6 h-6" />
+                          </div>
+                          <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${edu.color} text-white`}>
+                            {edu.status}
+                          </span>
+                        </div>
+
+                        {/* Degree Title */}
+                        <h3 className="text-lg font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-blue-400 group-hover:to-teal-400 transition-all duration-500 leading-tight">
+                          {edu.degree}
+                        </h3>
+
+                        {/* Institution Details */}
+                        <div className="space-y-2 mb-4">
+                          <div className="flex items-center text-gray-300">
+                            <GraduationCap className="w-4 h-4 mr-2 flex-shrink-0" />
+                            <span className="font-medium text-sm">{edu.institution}</span>
+                          </div>
+                          <div className="flex items-center text-gray-400">
+                            <Calendar className="w-4 h-4 mr-2 flex-shrink-0" />
+                            <span className="text-sm">{edu.duration}</span>
+                          </div>
+                          <div className="flex items-center text-gray-400">
+                            <MapPin className="w-4 h-4 mr-2 flex-shrink-0" />
+                            <span className="text-sm">{edu.location}</span>
+                          </div>
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-gray-300 mb-4 leading-relaxed text-sm">
+                          {edu.description}
+                        </p>
+
+                        {/* Highlights */}
+                        <div className="space-y-2">
+                          <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Key Highlights</h4>
+                          <div className="space-y-2">
+                            {edu.highlights.map((highlight, highlightIndex) => (
+                              <div
+                                key={highlightIndex}
+                                className="flex items-start text-gray-300 bg-white/5 rounded-lg p-2 hover:bg-white/10 transition-colors duration-300"
+                              >
+                                <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${edu.color} mr-2 mt-1.5 flex-shrink-0`}></div>
+                                <span className="text-xs leading-relaxed">{highlight}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

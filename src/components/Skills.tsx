@@ -293,7 +293,6 @@ const Skills: React.FC = () => {
           </div>
         ))}
       </div>
-                        className="absolute code-symbol text-gray-400 text-2xl font-mono opacity-10"
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto relative z-10">
           {/* Section Header */}
@@ -308,7 +307,7 @@ const Skills: React.FC = () => {
           </div>
 
           {/* Skills Grid */}
-                        className="absolute pulse-circle rounded-full border-2 border-gray-300 opacity-10"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skillCategories.map((category, categoryIndex) => (
               <div
                 key={categoryIndex}

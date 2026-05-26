@@ -1,9 +1,99 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Custom theme configuration */
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Animation keyframes */
+  --animate-universe-float: universeFloat 8s ease-in-out infinite;
+  --animate-star-move: starMove 12s linear infinite;
+  --animate-star-blink: starBlink 3s ease-in-out infinite;
+  --animate-star-twinkle: starTwinkle 2s ease-in-out infinite;
+  --animate-shooting-star: shootingStar 3s ease-out infinite;
+  --animate-constellation-draw: constellationDraw 3s ease-out forwards;
+  --animate-cosmic-drift: cosmicDrift 10s ease-in-out infinite;
+  --animate-profile-glow: profileGlow 3s ease-in-out infinite;
+  --animate-gradient-text: gradientText 5s ease infinite;
+  --animate-fade-in-up: fadeInUp 0.6s ease-out forwards;
+  --animate-spin-slow: spin 3s linear infinite;
+  --animate-academic-pulse: academicPulse 4s ease-in-out infinite;
+  --animate-knowledge-float: knowledgeFloat 3s ease-in-out infinite;
+  --animate-edu-wave: eduWave 8s ease-in-out infinite;
+  --animate-cube-float: cubeFloat 6s ease-in-out infinite;
+}
+
+@keyframes universeFloat {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  33% { transform: translateY(-20px) translateX(10px); }
+  66% { transform: translateY(10px) translateX(-10px); }
+}
+
+@keyframes starMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(var(--move-x), var(--move-y)); }
+}
+
+@keyframes starBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes shootingStar {
+  0% { transform: translateX(0) translateY(0); opacity: 1; }
+  100% { transform: translateX(300px) translateY(300px); opacity: 0; }
+}
+
+@keyframes constellationDraw {
+  0% { stroke-dashoffset: 100; opacity: 0; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+@keyframes cosmicDrift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(30px, 20px) rotate(180deg); }
+}
+
+@keyframes profileGlow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+@keyframes gradientText {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes academicPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.15; }
+  50% { transform: scale(1.2) rotate(180deg); opacity: 0.25; }
+}
+
+@keyframes knowledgeFloat {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.25; }
+  50% { transform: translateY(-10px) scale(1.5); opacity: 0.4; }
+}
+
+@keyframes eduWave {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+@keyframes cubeFloat {
+  0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); }
+  50% { transform: translateY(-20px) rotateX(180deg) rotateY(180deg); }
+}
 
 :root {
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
@@ -23,7 +113,7 @@ body {
   min-height: 100vh;
 }
 
-/* Custom animations and utilities */
+/* Custom text shadows */
 .text-shadow-3d {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 4px 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -49,28 +139,13 @@ body {
   opacity: 0.5;
 }
 
-/* Delay utilities for animations */
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-500 { animation-delay: 500ms; }
-.delay-700 { animation-delay: 700ms; }
-.delay-1000 { animation-delay: 1000ms; }
-.delay-2000 { animation-delay: 2000ms; }
-.delay-3000 { animation-delay: 3000ms; }
-
-/* Cube animations for 3D effects */
+/* Cube animations */
 .cube-container {
   animation: cubeFloat 6s ease-in-out infinite;
 }
 
 .small-cube-container {
   animation: cubeFloat 4s ease-in-out infinite;
-}
-
-@keyframes cubeFloat {
-  0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); }
-  50% { transform: translateY(-20px) rotateX(180deg) rotateY(180deg); }
 }
 
 .cube {
@@ -106,11 +181,6 @@ body {
   animation: academicPulse 4s ease-in-out infinite;
 }
 
-@keyframes academicPulse {
-  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.15; }
-  50% { transform: scale(1.2) rotate(180deg); opacity: 0.25; }
-}
-
 .hexagon {
   width: 15px;
   height: 15px;
@@ -122,19 +192,9 @@ body {
   animation: knowledgeFloat 3s ease-in-out infinite;
 }
 
-@keyframes knowledgeFloat {
-  0%, 100% { transform: translateY(0) scale(1); opacity: 0.25; }
-  50% { transform: translateY(-10px) scale(1.5); opacity: 0.4; }
-}
-
 /* Education wave */
 .education-wave {
   animation: eduWave 8s ease-in-out infinite;
-}
-
-@keyframes eduWave {
-  0%, 100% { transform: translateX(-100%); }
-  50% { transform: translateX(100%); }
 }
 
 /* Custom scrollbar */
@@ -153,4 +213,49 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #2563eb, #0d9488);
+}
+
+/* Animations */
+.animate-universe-float {
+  animation: universeFloat 8s ease-in-out infinite;
+}
+
+.animate-star-move {
+  animation: starMove 12s linear infinite;
+}
+
+.animate-star-blink {
+  animation: starBlink 3s ease-in-out infinite;
+}
+
+.animate-star-twinkle {
+  animation: starTwinkle 2s ease-in-out infinite;
+}
+
+.animate-shooting-star {
+  animation: shootingStar 3s ease-out infinite;
+}
+
+.animate-constellation-draw {
+  animation: constellationDraw 3s ease-out forwards;
+}
+
+.animate-cosmic-drift {
+  animation: cosmicDrift 10s ease-in-out infinite;
+}
+
+.animate-profile-glow {
+  animation: profileGlow 3s ease-in-out infinite;
+}
+
+.animate-gradient-text {
+  animation: gradientText 5s ease infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-spin-slow {
+  animation: spin 3s linear infinite;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Heart, Mail, Phone, Linkedin, Github, Instagram } from 'lucide-react';
+import { Heart, Mail, Phone } from 'lucide-react';
+import { Github, Linkedin, Instagram } from './BrandIcon';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();

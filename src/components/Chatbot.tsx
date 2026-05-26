@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Bot, Send, User, ExternalLink, Github, Mail, Phone, Linkedin, Instagram, X, Minimize2, Maximize2 } from 'lucide-react';
+import { Bot, Send, User, ExternalLink, Mail, Phone, X, Minimize2, Maximize2 } from 'lucide-react';
+import { Github, Linkedin, Instagram } from './BrandIcon';
 
 interface Message {
   id: string;

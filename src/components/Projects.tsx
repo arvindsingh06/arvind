@@ -1,5 +1,6 @@
 import React from 'react';
-import { ExternalLink, Github, Mail, Phone, MessageSquare, Send } from 'lucide-react';
+import { ExternalLink, Mail, Phone, MessageSquare, Send } from 'lucide-react';
+import { Github } from './BrandIcon';
 
 const Projects: React.FC = () => {
   // Generate small particles like in hero section

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
+const Preloader: React.FC<{ onComplete?: () => void }> = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
 
@@ -11,7 +11,7 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
           clearInterval(timer);
           setIsComplete(true);
           setTimeout(() => {
-            onComplete();
+            onComplete?.();
           }, 300);
           return 100;
         }
